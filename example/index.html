@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ja" prefix="og: http://ogp.me/ns# fb: http://www.facebook.com/2008/fbml">
+<head>
+	<meta charset="utf-8" />
+	<title>minimal sharer</title>
+
+
+	<!-- minimal sharer stylesheet -->
+	<link rel="stylesheet" href="../dist/minimalSharer.css" />
+
+	<!-- jquery -->
+	<script src="../dist/jquery.min.js"></script>
+
+	<!-- minimal sharer script -->
+	<script src="../dist/minimalSharer.js"></script>
+
+
+	<!-- DO NOT USE CODE BELOW. this is used only in example -->
+	<style>
+		body {
+			font: 12px 'Helvetica Neue', Helvetica, Arial;
+			background: #fcfcfc;
+			padding: 60px 40px;
+		}
+		header { margin-bottom: 60px; }
+		h1 {
+			font-weight: 100;
+			font-size: 48px;
+			color: #888;
+			margin: 0;
+			padding: 0 0 10px;
+		}
+		p { margin: 0; padding: 0; }
+		a { color: #999; text-decoration: none; }
+		a:hover { color: #555; }
+		footer { margin-top: 60px; }
+		small { font-size: 12px; color: #999; }
+	</style>
+</head>
+<body>
+	<header>
+		<h1>minimal sharer</h1>
+		<p><a href="http://github.com/creasty/minimal-sharer" target="_blank">github.com/creasty/minimal-sharer</a></p>
+	</header>
+
+
+	<!-- Example Begin -->
+
+	<ul id="share" class="minimal-sharer"></ul>
+	<script>
+		$(function () {
+			$('#share').minimalSharer({
+				script: '../dist/counter.php',
+				url: 'http://www.example.com/',
+				site: 'Example Domain',
+				title: 'Page Title',
+				lang: 'ja',
+				twitter: 'builtlast',
+				buttons: {
+					'twitter': 'Tweet',
+					'facebook': 'Facebook',
+					'gplus': 'Google+',
+					'hatena': 'Hatena',
+					'pinterest': 'Pin',
+					'linkedin': 'LinkedIn',
+					'stumble': 'StumbleUpon',
+					'tumblr': 'Tumblr',
+					'evernote': 'Evernote',
+					'mail': 'Mail'
+				}
+			});
+		});
+	</script>
+
+	<!--/ End Example -->
+
+
+	<footer>
+		<p><small>&copy; <a href="http://www.creasty.com/" target="_blank">2013 Creasty</a>.</small></p>
+	</footer>
+</body>
+</html>

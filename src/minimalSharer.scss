@@ -1,0 +1,97 @@
+@charset "utf-8";
+
+@import "compass";
+@import "compass/css3";
+
+/*
+
+Generated HTML
+==============
+
+<ul class="social-share">
+	<li class="twitter has-counter">
+		<a class="link" href="#">Tweet</a>
+		<span class="counter">0</span>
+	</li>
+	<li class="evernote">
+		<a class="link" href="#">Evernote</a>
+	</li>
+</ul>
+
+*/
+
+.minimal-sharer {
+	$btn-color: #aaa;
+	$btn-hover-color: #888;
+	$counter-color: #666;
+
+	list-style: none;
+	zoom: 1;
+
+	// Quick reset
+	&,
+	> * {
+		margin: 0;
+		padding: 0;
+	}
+
+	&:after {
+		content: "";
+		display: block;
+		clear: both;
+	}
+
+	li {
+		float: left;
+		margin-right: 10px;
+		font-size: 12px;
+		height: 22px;
+		line-height: 22px;
+	}
+
+	.link {
+		padding: 3px 6px;
+		color: $btn-color;
+		text-decoration: none;
+		text-shadow: 0 1px 0 rgba(#fff, .6);
+		line-height: 1;
+		border: 1px solid $btn-color;
+		@include border-radius(3px);
+		@include transition(all .3s);
+		@include box-shadow(0 1px 0 rgba(#fff, .6));
+
+		&:hover {
+			color: $btn-hover-color;
+			border-color: $btn-hover-color;
+		}
+
+		&:before { }
+	}
+
+	.counter {
+		position: relative;
+		padding: 3px 6px;
+		margin-left: 2px;
+		color: #fff;
+		line-height: 1;
+		border: 1px solid $counter-color;
+		background: $counter-color;
+		cursor: default;
+		@include border-radius(3px);
+		@include box-shadow(0 1px 0 rgba(#fff, .6));
+
+		&:before {
+			content: "";
+			display: block;
+			width: 0;
+			height: 0;
+			position: absolute;
+			top: 50%;
+			left: -12px;
+			margin-top: -6px;
+			border: 6px solid transparent;
+			border-right-color: $counter-color;
+		}
+	}
+}
+
