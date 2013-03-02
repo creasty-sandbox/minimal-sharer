@@ -1,21 +1,21 @@
 
-do ($, window, document) ->
+do ($ = jQuery, window, document) ->
 	services =
 		twitter:
-			count: 'http://urls.api.twitter.com/1/urls/count.json?url={url}&callback=?'
-			link: 'https://twitter.com/intent/tweet?text={%title}&url={url}&via={twitter}'
+			count: 'http://urls.api.twitter.com/1/urls/count.json?url={%url}&callback=?'
+			link: 'https://twitter.com/intent/tweet?text={%title}&url={%url}&via={%twitter}'
 			filter: (data) -> data.count
 			click: 'toolbar=0, status=0, width=650, height=360'
 
 		facebook:
 			count: 'http://graph.facebook.com/{%url}'
-			link: 'http://www.facebook.com/sharer.php?u={url}'
+			link: 'http://www.facebook.com/sharer.php?u={%url}'
 			filter: (data) -> data.shares
 			click: 'toolbar=0, status=0, width=900, height=500'
 
 		gplus:
-			count: '?service=gplus&id={url}'
-			link: 'https://plusone.google.com/_/+1/confirm?hl={lang}&url={url}'
+			count: '?service=gplus&id={%url}'
+			link: 'https://plusone.google.com/_/+1/confirm?hl={%lang}&url={%url}'
 			dataType: 'text'
 			click: 'toolbar=0, status=0, width=900, height=500'
 
@@ -26,23 +26,23 @@ do ($, window, document) ->
 					@count = config.script + @count
 
 		hatena:
-			count: 'http://api.b.st-hatena.com/entry.count?url={url}&callback=?'
+			count: 'http://api.b.st-hatena.com/entry.count?url={%url}&callback=?'
 			link: 'http://b.hatena.ne.jp/entry/{url}'
 			dataType: 'text'
 
 		pinterest:
-			count: 'http://api.pinterest.com/v1/urls/count.json?url={url}&callback=?'
+			count: 'http://api.pinterest.com/v1/urls/count.json?url={%url}&callback=?'
 			link: 'http://pinterest.com/pin/create/button/?url={%url}&media={%image}&description={%description}'
 			filter: (data) -> data.count
 
 		linkedin:
-			count: 'http://www.linkedin.com/countserv/count/share?url={url}&format=json'
-			link: 'http://www.linkedin.com/sharer.php?u={url}&t={%title}'
+			count: 'http://www.linkedin.com/countserv/count/share?url={%url}&format=json'
+			link: 'http://www.linkedin.com/sharer.php?u={%url}&t={%title}'
 			filter: (data) -> data.count
 
 		stumble:
-			count: 'http://www.stumbleupon.com/services/1.01/badge.getinfo?url={url}'
-			link: 'http://www.stumbleupon.com/submit?url={url}&title={%title}'
+			count: 'http://www.stumbleupon.com/services/1.01/badge.getinfo?url={%url}'
+			link: 'http://www.stumbleupon.com/submit?url={%url}&title={%title}'
 			filter: (data) -> data.result.views
 
 		tumblr:
