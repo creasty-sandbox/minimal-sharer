@@ -6,10 +6,12 @@
  * @copyright 2013 creasty
  * @license MIT
  */
+(function() {
+  var $, Services, Sharer;
 
-(function($, window, document) {
-  var services, sharer;
-  services = {
+  $ = jQuery;
+
+  Services = {
     twitter: {
       link: 'https://twitter.com/intent/tweet?text={%title}&url={%url}&via={%twitter}',
       click: 'toolbar=0, status=0, width=650, height=360'
@@ -88,7 +90,8 @@
       }
     }
   };
-  sharer = {
+
+  Sharer = {
     meta: null,
     init: function() {
       var $meta, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7;
@@ -122,15 +125,14 @@
         dataType: (_ref = btn.service.dataType) != null ? _ref : 'json',
         url: this.bind(btn.service.count, config),
         success: function(data) {
+          btn.$btn.addClass('has-counter');
           if (btn.service.filter) {
             data = btn.service.filter(data);
           }
-          btn.$counter.text(data || '0');
-          return btn.$btn.show();
+          return btn.$counter.text(data || '0').show();
         },
         error: function() {
-          btn.$counter.hide();
-          return btn.$btn.removeClass('has-counter').show();
+          return btn.$counter.hide();
         }
       });
     },
@@ -156,7 +158,7 @@
       for (service in _ref) {
         label = _ref[service];
         btn = {
-          service: services[service]
+          service: Services[service]
         };
         if (!(btn.service && label)) {
           continue;
@@ -167,8 +169,7 @@
           _base.init(btn, config);
         }
         if (btn.service.count) {
-          btn.$btn.hide().addClass('has-counter');
-          btn.$counter = $('<span class="counter">0</span>').appendTo(btn.$btn);
+          btn.$counter = $('<span class="counter">0</span>').hide().appendTo(btn.$btn);
           this.getCount(btn, config);
         }
         if (btn.service.link) {
@@ -180,19 +181,22 @@
       return _results;
     }
   };
+
   $.fn.minimalSharer = function(config) {
     if (!config.buttons) {
       return this;
     }
-    sharer.init();
-    config = $.extend({}, sharer.meta, config);
+    Sharer.init();
+    config = $.extend({}, Sharer.meta, config);
     return this.each(function() {
-      return sharer.create($(this), config);
+      return Sharer.create($(this), config);
     });
   };
-  return $.minimalSharer = {
+
+  $.minimalSharer = {
     extend: function(settings) {
-      return $.extend(services, settings);
+      return $.extend(Services, settings);
     }
   };
-})(jQuery, window, document);
+
+}).call(this);
