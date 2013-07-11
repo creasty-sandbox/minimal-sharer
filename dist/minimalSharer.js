@@ -28,19 +28,11 @@
       count: '?service=gplus&id={%url}',
       link: 'https://plusone.google.com/_/+1/confirm?hl={%lang}&url={%url}',
       dataType: 'text',
-      click: 'toolbar=0, status=0, width=900, height=500',
-      init: function(btn, config) {
-        if (!config.script) {
-          return btn.service.count = null;
-        } else if ('?' === this.count.charAt(0)) {
-          return this.count = config.script + this.count;
-        }
-      }
+      click: 'toolbar=0, status=0, width=900, height=500'
     },
     hatena: {
       count: 'http://api.b.st-hatena.com/entry.count?url={%url}&callback=?',
-      link: 'http://b.hatena.ne.jp/entry/{url}',
-      dataType: 'text'
+      link: 'http://b.hatena.ne.jp/entry/{url}'
     },
     pinterest: {
       count: 'http://api.pinterest.com/v1/urls/count.json?url={%url}&callback=?',
@@ -50,14 +42,14 @@
       }
     },
     linkedin: {
-      count: 'http://www.linkedin.com/countserv/count/share?url={%url}&format=json',
+      count: '?service=linkedin&id={%url}',
       link: 'http://www.linkedin.com/sharer.php?u={%url}&t={%title}',
       filter: function(data) {
         return data.count;
       }
     },
     stumble: {
-      count: 'http://www.stumbleupon.com/services/1.01/badge.getinfo?url={%url}',
+      count: '?service=stumble&id={%url}',
       link: 'http://www.stumbleupon.com/submit?url={%url}&title={%title}',
       filter: function(data) {
         return data.result.views;
@@ -152,7 +144,7 @@
       });
     },
     create: function($target, config) {
-      var btn, label, service, _base, _ref, _results;
+      var btn, label, service, _base, _ref, _ref1, _results;
       _ref = config.buttons;
       _results = [];
       for (service in _ref) {
@@ -165,6 +157,9 @@
         }
         btn.$btn = $("<li class=\"" + service + "\"><a href=\"#\" class=\"link\">" + label + "</a></li>").appendTo($target);
         btn.$link = btn.$btn.children('.link');
+        if ('?' === ((_ref1 = btn.service.count) != null ? _ref1.charAt(0) : void 0)) {
+          btn.service.count = !config.script ? null : config.script + btn.service.count;
+        }
         if (typeof (_base = btn.service).init === "function") {
           _base.init(btn, config);
         }

@@ -18,16 +18,9 @@ Services =
     dataType: 'text'
     click: 'toolbar=0, status=0, width=900, height=500'
 
-    init: (btn, config) ->
-      unless config.script
-        btn.service.count = null
-      else if '?' == @count.charAt 0
-        @count = config.script + @count
-
   hatena:
     count: 'http://api.b.st-hatena.com/entry.count?url={%url}&callback=?'
     link: 'http://b.hatena.ne.jp/entry/{url}'
-    dataType: 'text'
 
   pinterest:
     count: 'http://api.pinterest.com/v1/urls/count.json?url={%url}&callback=?'
@@ -35,12 +28,12 @@ Services =
     filter: (data) -> data.count
 
   linkedin:
-    count: 'http://www.linkedin.com/countserv/count/share?url={%url}&format=json'
+    count: '?service=linkedin&id={%url}'
     link: 'http://www.linkedin.com/sharer.php?u={%url}&t={%title}'
     filter: (data) -> data.count
 
   stumble:
-    count: 'http://www.stumbleupon.com/services/1.01/badge.getinfo?url={%url}'
+    count: '?service=stumble&id={%url}'
     link: 'http://www.stumbleupon.com/submit?url={%url}&title={%title}'
     filter: (data) -> data.result.views
 
@@ -121,6 +114,13 @@ Sharer =
 
       btn.$btn = $("<li class=\"#{service}\"><a href=\"#\" class=\"link\">#{label}</a></li>").appendTo $target
       btn.$link = btn.$btn.children '.link'
+
+      if '?' == btn.service.count?.charAt 0
+        btn.service.count =
+          if !config.script
+            null
+          else
+            config.script + btn.service.count
 
       btn.service.init? btn, config
 
