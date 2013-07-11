@@ -23,9 +23,6 @@ if ('gplus' == $service) {
 
 	$results = json_decode($results, true);
 
-
-	var_dump($results[0]);
-
 	echo $results[0]['result']['metadata']['globalCounts']['count'];
 
 	exit;
