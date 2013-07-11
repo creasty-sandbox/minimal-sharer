@@ -1,5 +1,5 @@
 /*!
- * minimal sharer - v1.0.0 (2013-03-02)
+ * minimal sharer - v1.0.0 (2013-07-11)
  *
  * @author creasty
  * @url http://github.com/creasty/minimal-sharer
@@ -11,11 +11,7 @@
   var services, sharer;
   services = {
     twitter: {
-      count: 'http://urls.api.twitter.com/1/urls/count.json?url={%url}&callback=?',
       link: 'https://twitter.com/intent/tweet?text={%title}&url={%url}&via={%twitter}',
-      filter: function(data) {
-        return data.count;
-      },
       click: 'toolbar=0, status=0, width=650, height=360'
     },
     facebook: {
