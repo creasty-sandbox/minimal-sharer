@@ -89,7 +89,14 @@ OGP が設定されたサイトだと、必要なコードはこれだけです�
 		<td>String</td>
 		<td>
 			<strong>付属の PHP スクリプトへのパス</strong>
-			<br />(オプショナル: Google Plus のカウント数を表示させるときは必須。ボタンのみを表示させる場合は必要ない)
+			<br />(オプショナル)
+			<br />以下のカウント数を表示させるときは必須。
+			<br />ボタンのみを表示させる場合は必要ない
+			<ul>
+				<li>Google Plus</li>
+				<li>LinkedIn</li>
+				<li>StumbleUpon</li>
+			</ul>
 		</td>
 	</tr>
 	<tr>
@@ -124,7 +131,7 @@ OGP が設定されたサイトだと、必要なコードはこれだけです�
 
 ## 利用可能なボタン
 
-1. `'twitter'` - Twitter でシェア
+1. `'twitter'` - Twitter でシェア **(カウンター無し)**
 2. `'facebook'` - Facebook でシェア
 3. `'gplus'` - Google Plus でシェア
 4. `'hatena'` - はてなブックマークに登録
@@ -176,3 +183,4 @@ OGP が設定されたサイトだと、必要なコードはこれだけです�
 # License
 
 MIT
+
