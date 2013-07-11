@@ -8,8 +8,7 @@ $service = $_GET['service'];
 if (!isset($id, $service) || empty($id) || empty($service))
 	exit;
 
-$id = urlencode($id);
-
+$id_e = urlencode($id);
 
 if ('gplus' == $service) {
 	$ch = curl_init();
@@ -24,18 +23,21 @@ if ('gplus' == $service) {
 
 	$results = json_decode($results, true);
 
+
+	var_dump($results[0]);
+
 	echo $results[0]['result']['metadata']['globalCounts']['count'];
 
 	exit;
 }
 
 if ('linkedin' == $service) {
-	echo file_get_contents("http://www.linkedin.com/countserv/count/share?url=$id&format=json");
+	echo file_get_contents("http://www.linkedin.com/countserv/count/share?url=$id_e&format=json");
 	exit;
 }
 
 if ('stumble' == $service) {
-	echo file_get_contents("http://www.stumbleupon.com/services/1.01/badge.getinfo?url=$id");
+	echo file_get_contents("http://www.stumbleupon.com/services/1.01/badge.getinfo?url=$id_e");
 	exit;
 }
 
