@@ -29,7 +29,8 @@ Services =
 
   linkedin:
     count: '?service=linkedin&id={%url}'
-    link: 'http://www.linkedin.com/sharer.php?u={%url}&t={%title}'
+    link: 'http://www.linkedin.com/shareArticle?mini=true&url={%url}&title={%title}&source={%site}'
+    click: 'toolbar=0, status=0, width=600, height=400'
     filter: (data) -> data.count
 
   stumble:
