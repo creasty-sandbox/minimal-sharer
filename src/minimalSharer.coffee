@@ -10,13 +10,13 @@ Services =
     count: 'http://graph.facebook.com/{%url}'
     link: 'http://www.facebook.com/sharer.php?u={%url}'
     filter: (data) -> data.shares
-    click: 'toolbar=0, status=0, width=900, height=500'
+    click: 'toolbar=0, status=0, width=600, height=300'
 
   gplus:
     count: '?service=gplus&id={%url}'
     link: 'https://plusone.google.com/_/+1/confirm?hl={%lang}&url={%url}'
     dataType: 'text'
-    click: 'toolbar=0, status=0, width=900, height=500'
+    click: 'toolbar=0, status=0, width=480, height=500'
 
   hatena:
     count: 'http://api.b.st-hatena.com/entry.count?url={%url}&callback=?'
